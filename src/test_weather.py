@@ -18,6 +18,7 @@ def test_get_weather_for_london():
     assert response.status_code == 200,f"Expected 200 but got {response.status_code}"
 
     data = response.json()
+    # print(data)
 
     assert 'name' in data
     assert 'main' in data
