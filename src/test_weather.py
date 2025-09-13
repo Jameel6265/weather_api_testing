@@ -23,5 +23,6 @@ def test_get_weather_for_london():
     assert 'name' in data
     assert 'main' in data
     assert 'weather' in data
-    assert data['name'] in data
+    assert data['name'] == city
+
     
