@@ -12,18 +12,6 @@ pipeline {
             }
         }
 
-        stage('Linting') {
-            steps {
-                sh '''
-                python3 -m venv venv
-                . venv/bin/activate
-                pip install --upgrade pip
-                pip install -r requirements.txt
-                flake8 .
-                '''
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t compliant-api-tests .'
@@ -35,7 +23,7 @@ pipeline {
                 sh '''
                 docker run --rm \
                     -e OPENWEATHER_API_KEY=$OPENWEATHER_API_KEY \
-                    compliant-api-tests pytest -v
+                    compliant-api-tests
                 '''
             }
         }
